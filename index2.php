@@ -53,7 +53,7 @@ $start = ($page - 1) * PAGING;
 $start = max(0, $start);
 
 /* 期末課題　１） 投稿されたデータを投稿した新しい順に表示させる order by desc*/
-$sql = 'SELECT m.user, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id order by p.modified desc LIMIT :start, :list';
+ $sql = 'SELECT m.user, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id AND p.id= :res ORDER BY p.created DESC';
 $posts = $db->prepare($sql);
 $posts->bindValue(':start', $start, PDO::PARAM_INT);
 $posts->bindValue(':list', PAGING, PDO::PARAM_INT);
